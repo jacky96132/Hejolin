@@ -31,7 +31,7 @@ CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
   `admin_name` varchar(20) NOT NULL,
   `admin_pass` varchar(100) NOT NULL,
-  `user_time` datetime NOT NULL
+  `user_time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -99,8 +99,8 @@ CREATE TABLE `discount` (
   `discount_time_start` datetime NOT NULL,
   `discount_time_end` datetime NOT NULL,
   `active` tinyint(1) NOT NULL COMMENT 'true,false',
-  `create_at` datetime NOT NULL COMMENT '自然產生',
-  `modified_at` datetime NOT NULL COMMENT '自然產生'
+  `create_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
+  `modified_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -122,8 +122,8 @@ CREATE TABLE `event` (
   `event_cover` varchar(255) NOT NULL COMMENT '儲存圖片檔名在資料庫',
   `event_condition` varchar(20) NOT NULL COMMENT '可報名、已截止、已報名',
   `event_due` datetime NOT NULL COMMENT '使用DATEADD()將活動開始時間減七天',
-  `event_create_date` datetime NOT NULL COMMENT '自然產生',
-  `event_update_date` datetime NOT NULL COMMENT '自然產生'
+  `event_create_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
+  `event_update_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -171,7 +171,7 @@ CREATE TABLE `guide_clia` (
   `cli_id` int(8) NOT NULL,
   `q_id` int(8) NOT NULL,
   `a_no` int(8) NOT NULL,
-  `a_date` datetime NOT NULL
+  `a_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -196,7 +196,7 @@ CREATE TABLE `mark` (
   `mark_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   `pics` varchar(255) NOT NULL,
-  `create_at` datetime NOT NULL COMMENT '自然產生'
+  `create_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -239,8 +239,8 @@ CREATE TABLE `news` (
   `content` varchar(9999) NOT NULL COMMENT '存HTML?',
   `cover_pic` varchar(255) NOT NULL,
   `pics` varchar(255) NOT NULL,
-  `create_at` datetime NOT NULL,
-  `modified_at` datetime NOT NULL
+  `create_at` datetime DEFAULT current_timestamp() NOT NULL,
+  `modified_at` datetime DEFAULT current_timestamp() NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -302,7 +302,7 @@ CREATE TABLE `order_main` (
   `member_id` int(11) NOT NULL COMMENT 'FK：member.member_id',
   `type` varchar(1) NOT NULL COMMENT 'S(sake), E(event), B(subscribe)',
   `used_code` varchar(10) NOT NULL COMMENT 'FK:discount.discount_code',
-  `order_date` datetime NOT NULL COMMENT '自然產生'
+  `order_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -453,8 +453,8 @@ CREATE TABLE `product_sake` (
   `pro_intro` varchar(700) NOT NULL,
   `pro_condition` varchar(10) NOT NULL COMMENT '補貨中',
   `format_id` int(11) NOT NULL,
-  `pro_creat_time` datetime NOT NULL COMMENT '自然產生',
-  `pro_unsell_time` datetime NOT NULL COMMENT '自然產生'
+  `pro_creat_time` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
+  `pro_unsell_time` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -476,8 +476,8 @@ CREATE TABLE `restaurant` (
   `fb_link` varchar(255) DEFAULT NULL COMMENT '可為空值',
   `ig_link` varchar(255) DEFAULT NULL COMMENT '可為空值',
   `booking_link` varchar(255) DEFAULT NULL COMMENT '可為空值',
-  `res_create_date` datetime NOT NULL COMMENT '自然產生',
-  `res_update_date` datetime NOT NULL COMMENT '自然產生'
+  `res_create_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
+  `res_update_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -545,8 +545,8 @@ CREATE TABLE `sub_plan` (
   `sub_plan` varchar(225) NOT NULL COMMENT '精米步合去分',
   `sub_products` varchar(20) NOT NULL COMMENT '直接寫死商品名稱',
   `sub_price` int(5) NOT NULL,
-  `create_at` datetime NOT NULL COMMENT '自然產生',
-  `modified_at` datetime NOT NULL COMMENT '自然產生'
+  `create_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
+  `modified_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -559,8 +559,8 @@ CREATE TABLE `sub_time` (
   `subtime_id` int(11) NOT NULL,
   `sub_time` varchar(225) NOT NULL COMMENT '一個月、六個月、一年',
   `sub_discount` float NOT NULL COMMENT '0.95,0.85,0.8',
-  `create_at` datetime NOT NULL COMMENT '自然產生',
-  `modified_at` datetime NOT NULL COMMENT '自然產生',
+  `create_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
+  `modified_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
   `sub_time_month` int(2) NOT NULL COMMENT '1,6,12'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
