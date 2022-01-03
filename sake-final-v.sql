@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 01 月 01 日 14:32
+-- 產生時間： 2022 年 01 月 03 日 14:23
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.26
 
@@ -374,6 +374,7 @@ CREATE TABLE `payment_detail` (
 
 CREATE TABLE `product_container` (
   `container_id` int(11) NOT NULL,
+  `container_name` varchar(255) NOT NULL,
   `container_img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -409,6 +410,7 @@ CREATE TABLE `product_format` (
 
 CREATE TABLE `product_gift` (
   `gift_id` int(11) NOT NULL,
+  `gift_name` varchar(20) NOT NULL,
   `pro_gift` int(5) NOT NULL COMMENT '無、1入、2入、1+1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1044,6 +1046,12 @@ ALTER TABLE `sub_plan`
   MODIFY `sub_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `sub_time`
+--
+ALTER TABLE `sub_time`
+  MODIFY `subtime_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user`
 --
 ALTER TABLE `user`
@@ -1171,8 +1179,8 @@ ALTER TABLE `order_sake_d`
 --
 ALTER TABLE `order_sub_d`
   ADD CONSTRAINT `order_sub_d_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `sub_plan` (`sub_id`),
-  ADD CONSTRAINT `order_sub_d_ibfk_2` FOREIGN KEY (`subtime_id`) REFERENCES `sub_time` (`subtime_id`),
-  ADD CONSTRAINT `order_sub_d_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order_main` (`order_id`);
+  ADD CONSTRAINT `order_sub_d_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order_main` (`order_id`),
+  ADD CONSTRAINT `order_sub_d_ibfk_4` FOREIGN KEY (`subtime_id`) REFERENCES `sub_time` (`subtime_id`);
 
 --
 -- 資料表的限制式 `payment_detail`
